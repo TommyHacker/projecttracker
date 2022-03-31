@@ -1,0 +1,131 @@
+/** @format */
+
+.side-bar {
+	.title {
+		position: absolute;
+		top: 1rem;
+		cursor: pointer;
+	}
+	min-height: 1235px;
+	width: 2rem;
+	box-shadow: 2px 20px 50px rgba(128, 128, 128, 0.294);
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100vh;
+	width: 15rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 100px 0;
+	justify-content: space-around;
+	.user-pog {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100px;
+		height: 100px;
+		border-radius: 50%;
+		box-shadow: 0px 0px 3px grey;
+		background: black;
+		color: white;
+		cursor: pointer;
+		margin: 0 auto;
+	}
+	.section {
+		text-transform: capitalize;
+		width: 100%;
+		height: 30%;
+		display: flex;
+		justify-content: space-around;
+		flex-direction: column;
+		.link-container {
+			height: 100%;
+			width: 100%;
+			a,
+			.link {
+				cursor: pointer;
+				height: 100%;
+				max-height: 100px;
+				width: 100%;
+				display: flex;
+				align-items: center;
+				transition: 0.2s ease;
+				text-decoration: none;
+				font-weight: 700;
+				padding-left: 3rem;
+				&:hover {
+					background: rgb(53, 52, 52);
+					color: white;
+				}
+			}
+		}
+	}
+}
+.notification-dot {
+	background-image: radial-gradient(rgb(226, 124, 124), rgb(173, 76, 76));
+	color: white;
+	min-height: 30px;
+	min-width: 30px;
+	border-radius: 50%;
+	font-size: 10pt;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	pointer-events: none;
+	position: absolute;
+	right: 2rem;
+}
+
+.logout-btn {
+	border: none;
+	padding: 5px 10px;
+	box-shadow: 0px 0px 4px grey;
+	background: rgb(53, 53, 53);
+	color: white;
+	cursor: pointer;
+	position: absolute;
+	bottom: 1rem;
+	left: 4rem;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+.notification-link-container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-direction: row;
+	cursor: pointer;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	text-align: left;
+	align-items: center;
+	transition: 0.2s ease;
+	text-decoration: none;
+	font-weight: 700;
+	a,
+	.link {
+		text-decoration: none;
+		height: 100%;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding-right: 3rem;
+	}
+	&:hover {
+		background: rgb(53, 52, 52);
+		a {
+			color: white;
+		}
+	}
+}

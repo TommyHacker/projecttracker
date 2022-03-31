@@ -1,31 +1,39 @@
 const express = require('express');
 const path = require('path');
-const app = express(),
-      bodyParser = require("body-parser");
-      port = 3080;
+const app = express();
+const port = 3080;
+const dotenv = require('dotenv').config();
+const cookieParser = require('cookie-parser');
+const mongoose = require('mongoose');
+const helmet = require('helmet');
+const userRoutes = require('./routes/userRoutes');
+const projectRoutes = require('./routes/projectRoutes');
+const ticketRoutes = require('./routes/ticketRoutes');
 
-// place holder for the data
-const users = [];
+mongoose.connect(process.env.DB_URL);
+mongoose.connection
+	.on('error', (error) => console.error(error))
+	.on('open', () => console.log('db:live'));
 
-app.use(bodyParser.json());
+const cookieOptions = {
+	httpOnly: true,
+	expires: 1000,
+};
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(express.static(path.join(__dirname, '../my-app/out')));
+app.use(helmet());
+app.use(cookieParser(process.env.COOKIE_SECRET, cookieOptions));
 
-app.get('/api/users', (req, res) => {
-  console.log('api/users called!')
-  res.json(users);
+app.get('/', (req, res) => {
+	res.sendFile(path.join(__dirname, '../my-app/out/index.html'));
 });
 
-app.post('/api/user', (req, res) => {
-  const user = req.body.user;
-  console.log('Adding user:::::', user);
-  users.push(user);
-  res.json("user addedd");
-});
-
-app.get('/', (req,res) => {
-  res.sendFile(path.join(__dirname, '../my-app/out/index.html'));
-});
+app.use('/api/user', userRoutes);
+app.use('/api/project', projectRoutes);
+app.use('/api/project/ticket', ticketRoutes);
 
 app.listen(port, () => {
-    console.log(`Server listening on the port::${port}`);
+	console.log(`server:${port}`);
 });
