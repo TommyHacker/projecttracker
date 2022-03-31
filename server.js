@@ -22,12 +22,12 @@ const cookieOptions = {
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '../my-app/out')));
+app.use(express.static(path.join(__dirname, './my-app/out')));
 app.use(helmet());
 app.use(cookieParser(process.env.COOKIE_SECRET, cookieOptions));
 
 app.get('/', (req, res) => {
-	res.sendFile(path.join(__dirname, '../my-app/out/index.html'));
+	res.sendFile(path.join(__dirname, './my-app/out/index.html'));
 });
 
 app.use('/api/user', userRoutes);
